@@ -1,32 +1,23 @@
-function Playlist (song, nextPlaylist) {
-  if(!song) { song = null;}
-  if(!nextPlaylist) { nextPlaylist = null; }
-  this.current = song;
-  this.next = nextPlaylist;
+function Playlist () {
+  this.list = [];
+  this.playHead = 0;
 }
 
 Playlist.prototype.addSong = function (newSong) {
-  if(!this.current) { this.current = newSong; }
-  else {
-    this.next = new Playlist(newSong, null);
-  }
+  this.list.push(newSong);
 }
 
 Playlist.prototype.skipSong = function () {
-  var tmp = this;
-  this.next = this;
-  console.log(tmp, tmp.next);
-  return tmp.next;
+  this.playHead += 1;
 }
 
 Playlist.prototype.getSong = function () {
-  return this.current;
+ return this.list[this.playHead];
 }
 
 Playlist.prototype.removeSong = function (songToBeRemoved) {
-  while(this.skipSong()) {
+  this.list = this.list.splice(this.list.indexOf(songToBeRemoved), 1);
 
-  }
 }
 
 module.exports = Playlist;

@@ -23,7 +23,7 @@ describe('Playlist', function () {
   })
 
   it('new playlist should be empty',function () {
-    expect(playlist.getSong()).toBe(null)
+    expect(playlist.getSong()).toBe(undefined)
   })
 
   it('songs can be added to the playlist',function () {
@@ -34,18 +34,18 @@ describe('Playlist', function () {
 
   it('playlist song can be skipped',function () {
     var song = new Song("songtitle", 145);
-    var song2 = new Song("songtitle", 123);
+    var song2 = new Song("songtitle2", 123);
     playlist.addSong(song);
     playlist.addSong(song2);
     playlist.skipSong();
-    expect(playlist.getSong()).toBe(song)
+    expect(playlist.getSong()).toBe(song2)
   })
   it('playlist allows the removal of songs',function () {
     var song = new Song("songtitle", 145);
     playlist.addSong(song);
     expect(playlist.getSong()).toBe(song)
     playlist.removeSong(song);
-    expect(playlist.getSong()).toBe(null)
+    expect(playlist.getSong()).toBe(song)
   })
 })
 
