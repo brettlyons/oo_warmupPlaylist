@@ -8,6 +8,11 @@ function Playlist (song, nextPlaylist) {
 Playlist.prototype.addSong = function (newSong) {
   if(!this.current) { this.current = newSong; }
   else {
+    var tmp;
+    while(this.next) {
+      tmp = this;
+      this = this.next;
+    }
     this.next = new Playlist(newSong, null);
   }
 }
